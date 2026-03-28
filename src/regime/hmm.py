@@ -7,9 +7,6 @@ Sử dụng: Regime as Feature
   - P(high_vol) được đưa vào feature set qua add_regime_features()
   - Model tự học interaction giữa regime và các features khác
 
-Regime overlay (exposure clamp) đã thử nghiệm nhưng giảm return mà
-không cải thiện MDD → đã loại bỏ khỏi codebase.
-
 Anti-leakage:
   - HMM fit trên data đến t-1 (không dùng ngày hiện tại)
   - Refit theo frequency (mặc định mỗi quý)
@@ -124,33 +121,3 @@ class RegimeHMM:
         except Exception as e:
             log.warning(f"HMM predict_proba error: {e}")
             return 0.5
-
-    def predict_proba_series(
-        self,
-        vxn: pd.Series,
-        vix: pd.Series,
-    ) -> pd.Series:
-        """
-        P(high_vol) cho toàn bộ series — dùng cho regime-as-feature mode.
-
-        Returns pd.Series index=date, values = P(high_vol) ∈ [0,1]
-        """
-        if self.model is None:
-            return pd.Series(0.5, index=vxn.index, name="p_high_vol")
-
-        feat = self._build_features(vxn, vix)
-        if len(feat) < 10:
-            return pd.Series(0.5, index=vxn.index, name="p_high_vol")
-
-        try:
-            probs = self.model.predict_proba(feat.values)
-            p_high = pd.Series(
-                probs[:, self.high_state],
-                index=feat.index,
-                name="p_high_vol",
-            )
-            # Reindex về original index, fill NaN với 0.5
-            return p_high.reindex(vxn.index).fillna(0.5)
-        except Exception as e:
-            log.warning(f"HMM predict_proba_series error: {e}")
-            return pd.Series(0.5, index=vxn.index, name="p_high_vol")

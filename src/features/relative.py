@@ -11,9 +11,6 @@ Features (tối đa 11 cột):
   Downside:       downside_vol_21d, downside_beta_63d, max_dd_21d   (3)  [downside_beta cần bench]
   Dispersion:     market_dispersion_21d                             (1)
 ─────────────────────────────────────────────────────────
-
-KHÔNG dùng groupby().apply() — chỉ dùng transform/vectorized
-để tránh pandas MultiIndex broadcast bug.
 """
 from __future__ import annotations
 

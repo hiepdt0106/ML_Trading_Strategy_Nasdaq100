@@ -2,17 +2,12 @@
 src/config.py
 ─────────────
 Đọc configs/base.yaml → dataclass config dùng chung.
-
-Thay SimpleNamespace bằng dataclass:
-  - Type hints + IDE autocomplete
-  - Validation chặt chẽ hơn
-  - Immutable sau khi khởi tạo
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import yaml
 

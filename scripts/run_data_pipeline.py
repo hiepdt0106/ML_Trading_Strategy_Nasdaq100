@@ -10,13 +10,6 @@ if str(ROOT) not in sys.path:
 
 import argparse
 import logging
-import sys
-from pathlib import Path
-
-# Add project root to sys.path before importing project modules
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
 
 from scripts._common import add_common_args, setup_logging
 from src.data.pipeline import run_data_pipeline

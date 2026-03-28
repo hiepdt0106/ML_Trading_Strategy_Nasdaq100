@@ -24,6 +24,7 @@ from src.backtest.engine import (
 )
 from src.config import load_config
 from src.utils.io import load, save
+from src.utils import print_summary
 
 log = logging.getLogger(__name__)
 
@@ -115,7 +116,7 @@ def main() -> None:
     args = parser.parse_args()
     setup_logging(args.log_level)
     run_backtests(args.config)
-
+    print_summary()
 
 if __name__ == "__main__":
     main()

@@ -3,21 +3,6 @@ src/backtest/engine.py
 ──────────────────────
 Thesis-ready backtest engine — Long-only, Top-K, Equal-weight, Rebalance
 
-Main fixes vs previous version:
-─────────────────────────────────────────────────────────────────
-1. Transaction costs are now applied to BOTH equity and daily_ret.
-   This avoids overstating Sharpe / Sortino / alpha statistics.
-
-   Cost model note:
-   - proportional turnover cost is still an approximation for equal-weight
-     portfolios; it is suitable for thesis research, not production execution.
-
-2. Costs are charged on the first holding day (trade at t+1 open),
-   which keeps daily return accounting aligned with execution timing.
-
-3. Equity output now stores gross_ret, cost_ret, daily_ret and flags
-   for entry days, making the notebook analysis easier and cleaner.
-
 Anti-leakage:
   - Signal at close(t) → trade at open(t+1)
   - No use of future information
@@ -503,10 +488,3 @@ def compute_alpha_stats(
         "Alpha_Test_Method": method,
     }
 
-
-def compare_to_benchmark(
-    ml_equity: pd.DataFrame,
-    bh_equity: pd.DataFrame,
-) -> dict:
-    """Backward-compatible alias with clearer name."""
-    return compute_alpha_stats(ml_equity, bh_equity)

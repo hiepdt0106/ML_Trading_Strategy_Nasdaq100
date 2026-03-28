@@ -1,6 +1,5 @@
 from .engine import (
     BacktestEngineConfig,
-    compare_to_benchmark,
     compute_alpha_stats,
     compute_benchmark,
     compute_metrics,
@@ -14,6 +13,5 @@ __all__ = [
     "compute_benchmark",
     "compute_metrics",
     "compute_alpha_stats",
-    "compare_to_benchmark",
     "summarize_trade_log",
 ]

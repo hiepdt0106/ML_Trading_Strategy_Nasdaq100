@@ -3,12 +3,6 @@ src/features/price.py
 ─────────────────────
 Nhóm 1 — Giá, Momentum, Technical Indicators, Volume (Chương 3.4)
 
-FIX vs v1:
-  ✗ Loại bỏ *_rank features (ret_1d_rank, ret_5d_rank, etc.)
-    Lý do: cross_sectional_rank() trong train.py sẽ rank TẤT CẢ features.
-    Nếu tạo _rank features ở đây, chúng bị rank lại → rank(rank(x)) = noise.
-    → Để train.py chịu trách nhiệm cross-sectional ranking duy nhất.
-
 Features (30 cột):
 ─────────────────────────────────────────────────────────────
   Returns:          ret_1d, ret_5d, ret_10d, ret_21d            (4)

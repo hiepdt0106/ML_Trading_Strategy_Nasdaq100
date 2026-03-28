@@ -1,5 +1,6 @@
 # Secrets
 .env
+.coverage
 
 # Python
 __pycache__/
@@ -24,3 +25,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+#file test
+test_report.txt

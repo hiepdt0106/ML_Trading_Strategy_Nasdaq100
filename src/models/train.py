@@ -88,7 +88,7 @@ def get_models(scale_pos_weight: float = 1.0) -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# PREPROCESSING — Cross-Sectional Rank (FIX A1)
+# PREPROCESSING — Cross-Sectional Rank 
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def _clean_raw(X: np.ndarray, medians: np.ndarray = None):
@@ -115,9 +115,6 @@ def cross_sectional_rank(
     - Ticker-specific features → cross-sectional rank per date [0, 1]
     - Macro features → giữ nguyên
     - Features đã là rank (suffix không cần xử lý vì đã loại _rank ở feature engineering)
-
-    FIX A1: Không còn double-ranking vì price.py/volatility.py
-    không tạo _rank features nữa.
     """
     df = df.copy()
     for col in feature_cols:
@@ -499,7 +496,6 @@ def walk_forward_train(
                 model.fit(X_tr, y_train)
                 y_prob = model.predict_proba(X_te)[:, 1]
 
-            # FIX E: Guard global_auc khi fold chỉ có 1 class
             if len(np.unique(y_test)) < 2:
                 g_auc = np.nan
             else:

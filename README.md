@@ -37,19 +37,21 @@ QQQ được dùng làm **market benchmark cho feature engineering** (rolling be
 
 ```text
 project_v7_final/
-├── configs/base.yaml          # Cấu hình tập trung
-├── notebooks/                 # 01→06: pipeline chạy tuần tự
-├── scripts/                   # CLI scripts cho automation
+├── configs/base.yaml               # Cấu hình tập trung
+├── notebooks/                      # 01→06: pipeline chạy tuần tự
+├── scripts/                        # CLI scripts cho automation
 ├── src/
-│   ├── data/                  # Fetch, align, QC, build dataset
-│   ├── features/              # 5 nhóm feature engineering
-│   ├── labeling/              # Triple Barrier Method
-│   ├── splits/                # Walk-forward with purge/embargo
-│   ├── models/                # LR, RF, XGB, ensemble
-│   ├── regime/                # HMM regime detection
-│   ├── backtest/              # Engine + metrics + benchmark
-│   └── utils/                 # I/O helpers
-└── tests/test_project.py      # 25 unit + integration tests
+│   ├── data/                       # Fetch, align, QC, build dataset
+│   ├── features/                   # 5 nhóm feature engineering
+│   ├── labeling/                   # Triple Barrier Method
+│   ├── splits/                     # Walk-forward with purge/embargo
+│   ├── models/                     # LR, RF, XGB, ensemble
+│   ├── regime/                     # HMM regime detection
+│   ├── backtest/                   # Engine + metrics + benchmark
+│   └── utils/                      # I/O helpers
+└── tests/                          # 31 tests
+    ├── test_project.py
+    ├── test_logic_additional.py      
 ```
 
 ### Các module chính

@@ -67,7 +67,6 @@ def add_vol_features(df: pd.DataFrame) -> pd.DataFrame:
 
         # Vol skew: neg_vol / pos_vol
         # min_periods=3: chỉ cần 3 ngày âm/dương trong 21 ngày
-        # (min_periods=10 cũ gây 67% NaN trong bull market)
         neg_vol = ret.where(ret < 0).rolling(21, min_periods=3).std()
         pos_vol = ret.where(ret > 0).rolling(21, min_periods=3).std()
         grp["vol_skew_21d"] = neg_vol / pos_vol.replace(0, np.nan)

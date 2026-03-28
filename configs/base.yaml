@@ -63,7 +63,7 @@ data:
 
 labeling:
   horizon:    10           # H = 10 ngày giao dịch (vertical barrier)
-  pt_sl_mult: 1.5          # barrier = 1.5 × σ_20 (Chương 3.6)
+  pt_sl_mult: 1.5          # barrier = 1.5 × σ_20 
   vol_window: 20           # rolling window tính daily_vol
 
 strategy:
@@ -86,4 +86,4 @@ backtest:
   cost_bps:        10      # transaction cost mỗi chiều (bps) = 0.1%
   slippage_bps:    0       # đã bao gồm trong cost_bps
   initial_capital: 10000   # vốn ban đầu (USD)
-  # Round-trip = 2 × 10bps = 20bps = 0.2% (khớp Chương 3.8)
+  # Round-trip = 2 × 10bps = 20bps = 0.2% 

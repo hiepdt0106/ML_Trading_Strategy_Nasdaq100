@@ -1,10 +1,4 @@
 """Export Power BI-ready reporting tables from thesis pipeline outputs.
-
-Usage (from project root):
-    python -m scripts.export_reporting --config configs/base.yaml --log-level INFO
-or:
-    python scripts/export_reporting.py --config configs/base.yaml --log-level INFO
-
 Outputs under outputs/reporting/:
     - dim_date.csv
     - dim_strategy.csv
