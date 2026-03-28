@@ -1,0 +1,14 @@
+file_name,table_type,purpose,grain
+dim_date.csv,Dimension,Calendar table for slicers and time intelligence,date
+dim_strategy.csv,Dimension,Strategy metadata and sort order,strategy
+fact_strategy_daily.csv,Fact,"Daily equity, returns, drawdown for ML_Full / ML_Base / Buy&Hold","date, strategy"
+fact_strategy_kpi.csv,Fact,Overall KPI table by strategy,strategy
+fact_strategy_kpi_long.csv,Fact,Long-format KPI table for easier visual filtering,"strategy, metric_name"
+fact_strategy_annual.csv,Fact,Annual returns by strategy,"year, strategy"
+fact_alpha.csv,Fact,Alpha statistics vs benchmark,strategy
+fact_walkforward.csv,Fact,Fold-level model diagnostics,"strategy, fold, model"
+fact_walkforward_summary.csv,Fact,Aggregated walk-forward summary by strategy and model,"strategy, model"
+fact_model_stability.csv,Fact,Model stability summary for ML_Full,model
+fact_sensitivity.csv,Fact,Sensitivity analysis in long format,"scenario_type, parameter_value, metric_name"
+fact_trade_rebalance.csv,Fact,Rebalance-level trade log for ML strategies,"strategy, rebalance_date"
+fact_trade_summary.csv,Fact,Trade summary by strategy,strategy

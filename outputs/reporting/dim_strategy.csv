@@ -1,0 +1,4 @@
+strategy,strategy_sort,feature_set,strategy_group,description
+ML_Full,1,Full,ML,"Ensemble of LR, RF, XGB using full feature set including macro and regime features."
+ML_Base,2,Base,ML,"Ensemble of LR, RF, XGB using base feature set without macro/regime features."
+Buy&Hold,3,Benchmark,Benchmark,Equal-weight buy and hold benchmark aligned to ML holding dates.

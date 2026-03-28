@@ -1,0 +1,89 @@
+# configs/base.yaml
+# ─────────────────────────────────────────────────────────────────
+# Cấu hình tập trung — thay đổi ở đây, không hardcode trong code
+# ─────────────────────────────────────────────────────────────────
+
+data:
+  start_date: "2014-01-01"
+  end_date:   "2026-03-01"
+
+  # 36 cổ phiếu NASDAQ-100 có lịch sử đầy đủ từ 2014
+  tickers:
+    # Semiconductor & Hardware
+    - AAPL   # Apple
+    - MSFT   # Microsoft
+    - NVDA   # Nvidia
+    - AVGO   # Broadcom
+    - AMD    # AMD
+    - QCOM   # Qualcomm
+    - AMAT   # Applied Materials
+    - LRCX   # Lam Research
+    - MU     # Micron
+    - INTC   # Intel
+    # Software & Cloud
+    - ADBE   # Adobe
+    - CRM    # Salesforce
+    - ORCL   # Oracle
+    - PANW   # Palo Alto Networks
+    - SNPS   # Synopsys
+    - CDNS   # Cadence
+    # Internet & Platform
+    - AMZN   # Amazon
+    - GOOGL  # Alphabet
+    - META   # Meta
+    - NFLX   # Netflix
+    - EBAY   # eBay
+    - PYPL   # PayPal
+    # EV & Hardware
+    - TSLA   # Tesla
+    # Biotech & Pharma
+    - AMGN   # Amgen
+    - GILD   # Gilead
+    - REGN   # Regeneron
+    - VRTX   # Vertex
+    - ISRG   # Intuitive Surgical
+    # Consumer & Retail
+    - COST   # Costco
+    - PEP    # PepsiCo
+    - SBUX   # Starbucks
+    - MDLZ   # Mondelez
+    - MNST   # Monster Beverage
+    # Industrial & Services
+    - PAYX   # Paychex
+    - FAST   # Fastenal
+    - ODFL   # Old Dominion Freight
+
+  # QQQ dùng làm market benchmark cho residual features
+  benchmark_ticker: "QQQ"
+
+  # Ngưỡng QC
+  min_trading_days: 200    # loại ticker nếu < số ngày có dữ liệu thực
+  max_nan_ratio:    0.02   # tối đa 2% NaN trong adj_close
+  max_consec_nan:   5      # tối đa 5 ngày NaN liên tiếp
+
+labeling:
+  horizon:    10           # H = 10 ngày giao dịch (vertical barrier)
+  pt_sl_mult: 1.5          # barrier = 1.5 × σ_20 (Chương 3.6)
+  vol_window: 20           # rolling window tính daily_vol
+
+strategy:
+  top_k:           10       # chọn top-K cổ phiếu mỗi kỳ rebalance
+  rebalance_days:  10      # tái cân bằng mỗi 10 ngày giao dịch (= horizon)
+
+walkforward:
+  first_test_year: 2020
+  max_train_years: 8
+
+regime:
+  # HMM Regime Detection — Regime as Feature
+  # HMM tự phát hiện 2 trạng thái: Low-Vol / High-Vol
+  # P(high_vol) được đưa vào feature set (regime_features.py)
+  # Regime overlay (exposure clamp) đã thử nghiệm → loại bỏ
+  lookback:        504     # tối thiểu 2 năm data để fit HMM
+  refit_frequency: 63      # refit HMM mỗi ~1 quý (trading days)
+
+backtest:
+  cost_bps:        10      # transaction cost mỗi chiều (bps) = 0.1%
+  slippage_bps:    0       # đã bao gồm trong cost_bps
+  initial_capital: 10000   # vốn ban đầu (USD)
+  # Round-trip = 2 × 10bps = 20bps = 0.2% (khớp Chương 3.8)
