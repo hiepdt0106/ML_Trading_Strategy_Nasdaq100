@@ -1,5 +1,3 @@
-# ĐỒ ÁN TỐT NGHIỆP
-
 **Đề tài:** Xây dựng và đánh giá chiến lược đầu tư dựa trên Machine Learning trên nhóm cổ phiếu đại diện NASDAQ-100
 
 ---
